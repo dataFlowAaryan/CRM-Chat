@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.css";
 import { AiOutlineSend } from "react-icons/ai";
-import { user } from "../../../providers/UserProvider";
+import { user } from "../../providers/UserProvider";
 import axios from "axios";
 
 const Chat = ({ messages, userID }) => {
@@ -54,18 +54,18 @@ const Chat = ({ messages, userID }) => {
       <div className={styles.send_box}>
         <input
           value={message}
+          placeholder="Type something..."
           onChange={(e) => {
             setMessage(e.target.value);
           }}
           onSubmit={handleSubmit}
           className={styles.send_input}
           onKeyDown={(e) => {
-            if (e.key === "Enter")
-                handleSubmit();
-            }}
+            if (e.key === "Enter") handleSubmit();
+          }}
         ></input>
-        
-        <AiOutlineSend size={30} onClick={handleSubmit} />
+
+        {/* <AiOutlineSend size={30} onClick={handleSubmit} /> */}
       </div>
     </div>
   );

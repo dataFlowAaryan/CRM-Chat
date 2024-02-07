@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import SignInPage from "./routes/auth/SignInPage";
 import SignUpPage from "./routes/auth/SignUpPage";
 import { UserProvider } from "./providers/UserProvider";
@@ -7,6 +7,13 @@ import { MessagesProvider } from "./providers/MessagesProvider";
 import Messages from "./routes/Messages/Messages";
 
 function App() {
+  const ProtectedRoute = ({ children }) => {
+    if (!localStorage.getItem("token")) {
+      return <Navigate to="/auth/login" />;
+    }
+
+    return children;
+  };
   return (
     <UserProvider>
       <MessagesProvider>
@@ -14,7 +21,15 @@ function App() {
           <Routes>
             <Route path="/auth/login" element={<SignInPage />} />
             <Route path="/auth/register" element={<SignUpPage />} />
-            <Route path="/" element={<Messages />} />
+
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Messages />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </MessagesProvider>

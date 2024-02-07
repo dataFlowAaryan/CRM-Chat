@@ -7,9 +7,6 @@ router.use("/auth", require("./auth"));
 // User related routes
 router.use("/users", require("./users"));
 
-// Todo related routes
-router.use("/todos", require("./todos"));
-
 // Message related routes
 router.use("/messages", require("./messages"));
 
