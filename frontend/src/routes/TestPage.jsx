@@ -1,10 +1,9 @@
 import React from 'react'
-import userChat from "../components/userChat/userChat"
 
-const testPage = () => {
+const TestPage = () => {
   return (
     <div>quite interesting</div>
   )
 }
 
-export default testPage
+export default TestPage;
